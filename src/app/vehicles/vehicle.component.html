@@ -1,0 +1,26 @@
+<!--<h2>
+  Upcoming Renewals
+  <a href=""> Add a reminder</a>
+</h2>
+<div class="widget">
+  <h3>Renew My Driver's License</h3>
+  <div class="row">
+    <div class="col">
+
+    </div>
+  </div>
+</div>-->
+
+<div *ngIf="authUser?.vehicles?.length > 0" class="widget">
+  <h3>Renew My Tabs</h3>
+  <div *ngFor="let vehicle of authUser.vehicles" class="row">
+    <div class="col-lg">
+      <p><span class="label">Vehicle make:</span> {{vehicle.make}}</p>
+      <p><span class="label">Vehicle model:</span> {{vehicle.model}}</p>
+      <p><span class="label">License plate:</span> {{vehicle.plateNumber}}</p>
+    </div>
+    <div class="col-lg">
+      <a href="{{vehicle.id}}" class="button">Renew Tabs</a>
+    </div>
+  </div>
+</div>

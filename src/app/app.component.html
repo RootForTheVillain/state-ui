@@ -1,3 +1,41 @@
-<h1>
-  {{title}}
-</h1>
+<div id="top-menu" class="row">
+  <div class="container">
+    <div id="logo" class="col-sm-4">
+      <h2>michigan.gov</h2>
+    </div>
+    <div class="col-sm-4">
+      <input type="text" name="search" placeholder="Search..." />
+    </div>
+    <div class="col-sm-4">
+      <ul>
+        <li>Morning <a href="">{{authUser.firstName}}!</a></li>
+        <li><a hrer="">Contact</a></li>
+        <li><a hrer="">Logout</a></li>
+        <li>☰</li>
+      </ul>
+    </div>
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<div id="main" class="container">
+  <!--<alert type="success">hello</alert>-->
+  <div class="row">
+    <div class="col-lg-2">
+      <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
+      <ol class="items">
+        <li *ngFor="let month of MONTHS; let i = index"
+          [class.selected]="i === currentDate.getMonth()">{{month}}</li>
+      </ol>
+    </div>
+    <div class="col-lg-6">
+      <app-vehicles></app-vehicles>
+      <!--<router-outlet></router-outlet>-->
+    </div>
+    <div class="col-lg-4">
+      <h2>Users</h2>
+      <ul>
+        <li *ngFor="let user of users">{{user.firstName}}</li>
+      </ul>
+    </div>
+  </div>
+</div><!-- /.container -->

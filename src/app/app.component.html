@@ -1,41 +1,57 @@
-<div id="top-menu" class="row">
+<nav class="navbar navbar-fixed-top">
   <div class="container">
-    <div id="logo" class="col-sm-4">
-      <h2>michigan.gov</h2>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Michigan.gov</a>
     </div>
-    <div class="col-sm-4">
-      <input type="text" name="search" placeholder="Search..." />
-    </div>
-    <div class="col-sm-4">
-      <ul>
-        <li>Morning <a href="">{{authUser.firstName}}!</a></li>
-        <li><a hrer="">Contact</a></li>
-        <li><a hrer="">Logout</a></li>
-        <li>☰</li>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <!--<li class="active"><a href="#">Home</a></li>-->
+        <li><input type="text"></li>
+        <li><a href="#about">Good {{timeOfDay}}, {{authUser.firstName}}!</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#logout">Logout</a></li>
+        <li><a href="#hamburger">☰</a></li>
+        <!--<li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>-->
       </ul>
-    </div>
-  </div><!-- /row -->
-</div><!-- /container -->
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 
 <div id="main" class="container">
   <!--<alert type="success">hello</alert>-->
   <div class="row">
     <div class="col-lg-2">
-      <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
-      <ol class="items">
-        <li *ngFor="let month of MONTHS; let i = index"
-          [class.selected]="i === currentDate.getMonth()">{{month}}</li>
-      </ol>
+      <div id="months-of-the-year">
+        <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
+        <ol class="items">
+          <li *ngFor="let month of MONTHS; let i = index"
+            [class.selected]="i === currentDate.getMonth()">{{month}}</li>
+        </ol>
+      </div>
     </div>
     <div class="col-lg-6">
       <app-vehicles></app-vehicles>
       <!--<router-outlet></router-outlet>-->
     </div>
     <div class="col-lg-4">
-      <h2>Users</h2>
-      <!--<ul>
-        <li *ngFor="let user of users">{{user.firstName}}</li>
-      </ul>-->
+      <h2>Other stuff</h2>
     </div>
   </div>
 </div><!-- /.container -->

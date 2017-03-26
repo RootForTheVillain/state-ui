@@ -34,6 +34,17 @@ a:hover {
 }
 
 /************* START TOP MENU **************/
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #B3B3B3;
+}
+
+.nav > li > a:hover {
+  text-decoration: underline;
+  background: none;
+}
+
 #top-menu {
   background-color: #fff;
   margin-bottom: 20em;
@@ -72,6 +83,10 @@ a:hover {
 
 /************* START CONTENT **************/
 
+#months-of-the-year {
+  position: fixed;
+}
+
 /* items class */
 .items {
   margin: 0 0 2em 0;
@@ -97,7 +112,7 @@ a:hover {
 }
 .widget {
   padding: .5em;
-  margin: 1.5em;
+  margin: 1em 0;
   background-color: #fff;
   border: 1px solid #ccc;
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.15);
@@ -112,6 +127,44 @@ a:hover {
 
 .widget span.label {
   color: #989898;
+  padding: 0;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+.widget-heading h2 {
+  font-size: 22px;
+  padding: inherit 0;
+  margin: inherit 0 0 0;
+}
+
+.widget-heading-action {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.widget-heading-action a {
+  color: #2F7AFF;
+  text-decoration: none;
+}
+
+.widget-heading-action a:hover {
+  text-decoration: underline;
+}
+
+.row-equal-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.row-equal-height > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #f00;
 }
 
 /************* END CONTENT **************/

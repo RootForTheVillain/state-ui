@@ -14,10 +14,9 @@ export class AppComponent implements OnInit {
 
   private authUserId: number = 1;
 
-  private users: User[];
-
   private authUser: User = new User();
   private currentDate: Date = new Date();
+  private timeOfDay: string;
 
   private MONTHS: string[] = [
       'January',
@@ -37,27 +36,31 @@ export class AppComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-
-    //this.getUsers();
-
     this.getUser();
 
-    //console.log(this.authUser.birthDate, this.currentDate.getTime(),new Date(this.authUser.birthDate).getTime());
-    //this.getVehiclesForUser();
-  }
-
-  getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(response => this.users = response);
+    let currentHours = this.currentDate.getHours();
+    if (currentHours < 12) {
+       this.timeOfDay = 'morning';
+    } else if (currentHours > 12 && currentHours < 18) {
+        this.timeOfDay = 'afternoon';
+    } else {
+      this.timeOfDay = 'evening';
+    }
   }
 
   getUser(): void {
     this.userService.getUser(this.authUserId)
-      .then(response => this.authUser = response);
+      .then(response => {
+        this.authUser = response;
+
+        // Capitalize first letter in first name
+        this.authUser.firstName = this.authUser.firstName.charAt(0).toUpperCase() +
+          this.authUser.firstName.slice(1, this.authUser.firstName.length).toLowerCase();
+      });
   }
 
-  /*getVehiclesForUser(): void {
-    this.userService.getVehiclesForUser(this.authUserId)
-      .subscribe(response => this.vehicles = response);
+  /*getUsers(): void {
+    this.userService.getUsers()
+      .subscribe(response => this.users = response);
   }*/
 }

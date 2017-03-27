@@ -14,10 +14,13 @@ export class UserService {
     users: User[] = [];
 
     private vehicles: Vehicle[] = [];
+    private isLoggedIn: boolean = false;
 
     private rootUrl: string = 'http://localhost:8080/rest/users/';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+      this.isLoggedIn = !!localStorage.getItem('auth_token');
+    }
 
     getUsers(): Observable<User[]> {
       return this.http.get(this.rootUrl)
@@ -31,6 +34,15 @@ export class UserService {
         .catch(this.handleError);
     }
 
+    getAuthenticatedUser(): User {
+      let user = null;
+      if (localStorage.getItem('auth_user')) {
+        this.getUser(+localStorage.getItem('auth_user'))
+        .then(response => user);
+      }
+      return user;
+    }
+
     getVehiclesForUser(id: number): Observable<Vehicle[]> {
       return this.http.get(this.rootUrl + id + '/vehicles')
         .map(response => this.vehicles = response.json());
@@ -41,3 +53,17 @@ export class UserService {
       return Promise.reject(error.message || error);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

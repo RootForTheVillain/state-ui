@@ -3,5 +3,5 @@ export class Vehicle {
   make: string;
   model: string;
   plateNumber: string;
-  plateExpiration: string;
+  plateExpiration: Date;
 }

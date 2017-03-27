@@ -1,8 +1,10 @@
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit }        from '@angular/core';
 
-import { User }               from './users/user';
-import { UserService }        from './users/user.service';
-import { Vehicle }            from './vehicles/vehicle';
+import { ActivatedRoute, Router, Params, RoutesRecognized }  from '@angular/router';
+import { Location }                 from '@angular/common';
+
+import { User }                     from './users/user';
+import { UserService }              from './users/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,9 +12,9 @@ import { Vehicle }            from './vehicles/vehicle';
   moduleId: module.id
 })
 
-export class AppComponent implements OnInit {
 
-  private authUserId: number = 1;
+
+export class AppComponent implements OnInit {
 
   private authUser: User = new User();
   private currentDate: Date = new Date();
@@ -33,34 +35,29 @@ export class AppComponent implements OnInit {
       'December'
     ];
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute) {
+      localStorage.setItem('auth_token', 'true');
+      localStorage.setItem('auth_user', '1');
+  }
 
   ngOnInit(): void {
-    this.getUser();
-
-    let currentHours = this.currentDate.getHours();
-    if (currentHours < 12) {
-       this.timeOfDay = 'morning';
-    } else if (currentHours > 12 && currentHours < 18) {
-        this.timeOfDay = 'afternoon';
-    } else {
-      this.timeOfDay = 'evening';
-    }
+    /**
+      * This is a disaster. There's no way this is how you're supposed to do this
+      */
+    this.router.events.subscribe(val => {
+      if (val instanceof RoutesRecognized) {
+        this.userService.getUser(+val.state.root.firstChild.params['id'])
+        .then(response => this.authUser = response);
+      }
+    });
   }
 
-  getUser(): void {
-    this.userService.getUser(this.authUserId)
-      .then(response => {
-        this.authUser = response;
-
-        // Capitalize first letter in first name
-        this.authUser.firstName = this.authUser.firstName.charAt(0).toUpperCase() +
-          this.authUser.firstName.slice(1, this.authUser.firstName.length).toLowerCase();
-      });
+  onMonthChange(id: number, year: number, month: string): void {
+    console.log('AppComponent.onMonthChance() called')
+    console.log(id, year, month)
+    this.router.navigate(['users/' + id + '/' + year + '/' + month.toLowerCase()]);
   }
-
-  /*getUsers(): void {
-    this.userService.getUsers()
-      .subscribe(response => this.users = response);
-  }*/
 }

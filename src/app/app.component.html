@@ -1,57 +1,23 @@
-<nav class="navbar navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Michigan.gov</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <!--<li class="active"><a href="#">Home</a></li>-->
-        <li><input type="text"></li>
-        <li><a href="#about">Good {{timeOfDay}}, {{authUser.firstName}}!</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#logout">Logout</a></li>
-        <li><a href="#hamburger">☰</a></li>
-        <!--<li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>-->
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div>
-</nav>
-
+<top-menu></top-menu>
 <div id="main" class="container">
   <!--<alert type="success">hello</alert>-->
-  <div class="row">
+  <div class="row no-gutters">
     <div class="col-lg-2">
       <div id="months-of-the-year">
         <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
         <ol class="items">
           <li *ngFor="let month of MONTHS; let i = index"
-            [class.selected]="i === currentDate.getMonth()">{{month}}</li>
+              [class.selected]="i === currentDate.getMonth()"
+              (click)="onMonthChange(authUser.id, currentDate.getUTCFullYear(), month)">{{month}}</li>
         </ol>
       </div>
     </div>
     <div class="col-lg-6">
-      <app-vehicles></app-vehicles>
-      <!--<router-outlet></router-outlet>-->
+      <app-home></app-home>
+      <router-outlet></router-outlet>
     </div>
     <div class="col-lg-4">
       <h2>Other stuff</h2>
     </div>
   </div>
-</div><!-- /.container -->
+</div>

@@ -1,8 +1,8 @@
 body {
-  background: url('../images/background-cropped.jpg') no-repeat;
+  background: url('../images/background-cropped.jpg') no-repeat fixed;
 }
 
-body, #main {
+body {
   /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
   background-color: #EDECEC !important;
 }
@@ -19,6 +19,10 @@ body,html {
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#main {
+  margin-top: 220px;
 }
 
 .text-red {
@@ -45,29 +49,33 @@ a:hover {
   background: none;
 }
 
-#top-menu {
-  background-color: #fff;
-  margin-bottom: 20em;
-}
-
-#top-menu ul {
-  list-style-type: none;
-  margin: 0 3em;
-  padding: 0;
-}
-
-#top-menu ul li {
-  float: left;
-}
-
-#logo {
+.navbar-brand {
+  color: #334B7E;
   background: url('../images/state-logo.png') no-repeat;
-  width: 165px;
+  display: block;
   height: 50px;
+  padding-left: 50px;
 }
 
-#logo h2 {
-  display: none;
+.searchbar {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #C6C6C6;
+  border-right: none;
+  margin: 10px 0 0 0;
+  padding: 3px;
+  display: inline-block;
+  width: 390px;
+}
+
+.search-button {
+  background-color: #fff;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border: 1px solid #C6C6C6;
+  margin: 10px 0 0 0;
+  padding: 3px 5px 2px 5px;
+  display: inline-block;
 }
 /************* END TOP MENU **************/
 
@@ -76,7 +84,7 @@ a:hover {
 #currentYear {
   color: #36A499 !important;
   text-align: center;
-  font-size: 40px;
+  font-size: 32px;
 }
 
 /************* END MAIN **************/
@@ -85,6 +93,7 @@ a:hover {
 
 #months-of-the-year {
   position: fixed;
+  top: 200px;
 }
 
 /* items class */
@@ -101,7 +110,7 @@ a:hover {
   text-align: center;
   border-radius: 4px;
   background-color: #F1F1F1;
-  font-size: 24px;
+  font-size: 18px;
   color: #4D4D4C;
 }
 .items li:hover,
@@ -111,7 +120,7 @@ a:hover {
   left: .1em;
 }
 .widget {
-  padding: .5em;
+  padding: .75em;
   margin: 1em 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -123,9 +132,11 @@ a:hover {
 
 .widget h3 {
   color: #36A499;
+  font-size: 18px;
+  margin-top: 8px;
 }
 
-.widget span.label {
+.widget span.column-label {
   color: #989898;
   padding: 0;
   font-size: 100%;
@@ -164,7 +175,6 @@ a:hover {
 .row-equal-height > [class*='col-'] {
   display: flex;
   flex-direction: column;
-  border: 1px solid #f00;
 }
 
 /************* END CONTENT **************/

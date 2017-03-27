@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <!--<li class="active"><a href="#">Home</a></li>-->
         <li class="search-container">
-          <input type="text" placeholder="What do you want to do?" class="searchbar"><button type="button" class="search-button"><img src="../assets/images/magnifying-glass.png" width="20" height="20" alt="Search"></button>
+          <input type="text" placeholder="What do you want to do?" class="searchbar"><button type="submit" class="search-button"><img src="../assets/images/magnifying-glass.png" width="20" height="20" alt="Search"></button>
         </li>
         <li><a href="#about">Good {{timeOfDay}}, {{authUser.firstName}}!</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -35,3 +35,25 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+
+<div id="main" class="container">
+  <!--<alert type="success">hello</alert>-->
+  <div class="row no-gutters">
+    <div class="col-lg-2">
+      <div id="months-of-the-year">
+        <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
+        <ol class="items">
+          <li *ngFor="let month of MONTHS; let i = index"
+            [class.selected]="i === currentDate.getMonth()">{{month}}</li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <app-vehicles></app-vehicles>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-lg-4">
+      <h2>Other stuff</h2>
+    </div>
+  </div>
+</div><!-- /.container -->

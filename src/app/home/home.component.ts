@@ -29,14 +29,6 @@ export class HomeComponent implements OnInit {
     private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-    console.log('HomeComponent.ngOnInit()')
-
-    /*this.vehicleService.getRenewals(1,
-      new Date().getUTCFullYear(),
-      new Date().getMonth())
-    .subscribe(response => this.vehiclesToRenew = response);*/
-
     this.route.params
       .switchMap((params: Params) => {
         let year = (params['year']) ? params['year']: new Date().getUTCFullYear();
@@ -44,31 +36,5 @@ export class HomeComponent implements OnInit {
         return this.vehicleService.getRenewals(+params['id'], +year, +month);
       })
       .subscribe(response => this.vehiclesToRenew = response);
-
-
-
-
-
-
-    /*this.route.params.subscribe(params => {
-        console.log('HomeComponent.0',
-          params['id']);
-    });
-
-    this.router.events.subscribe(val => {
-      if (val instanceof RoutesRecognized) {
-
-        console.log('HomeComponent.1',
-          val.state.root.firstChild.params['id'],
-          val.state.root.firstChild.params['year'],
-          //this.app.convertMonthToNumber(val.state.root.firstChild.params['month'])
-          val.state.root.firstChild.params['month'])
-
-        this.vehicleService.getRenewals(+val.state.root.firstChild.params['id'],
-          +val.state.root.firstChild.params['year'],
-          +this.utilsService.convertMonthToNumber(val.state.root.firstChild.params['month']))
-        .subscribe(response => this.vehiclesToRenew = response);
-      }
-    });*/
   }
 }

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute, Params, Router, RoutesRecognized }   from '@angular/router';
-import { Location }                 from '@angular/common';
-
 import { User } from '../../users/user';
 import { UserService } from '../../users/user.service';
 
@@ -18,26 +15,19 @@ export class TopMenuComponent implements OnInit {
   private timeOfDay: string;
 
   constructor(
-    private userService: UserService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location) {}
+    private userService: UserService) {}
 
   ngOnInit(): void {
-    // Get route params from parent Component
-    this.router.events.subscribe(val => {
-      if (val instanceof RoutesRecognized) {
+    this.authUser = this.userService.getAuthenticatedUser();
+    if (this.authUser === null) {
 
-console.log('top-menu-component.ts: ', val.state.root.firstChild.params['id'])
+      console.log('TopMenuComponent -> authUser = null, setting authUser....')
 
-        if (isNaN(+val.state.root.firstChild.params['id'])) {
-          console.log('top-menu-component.ts: id isNaN')
-        }
-
-        /*this.userService.getUser(+val.state.root.firstChild.params['id'])
-          .then(response => this.authUser = response);*/
-      }
-    });
+      this.userService.getUser(1).then(response => {
+        this.authUser = response;
+        this.userService.setAuthenticatedUser(this.authUser);
+      });
+    }
 
     // Get time of day
     let currentHours = this.currentDate.getHours();

@@ -31,8 +31,6 @@ export class AppComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private route: ActivatedRoute) {
-      localStorage.setItem('auth_token', 'true');
-      localStorage.setItem('auth_user', '1');
       this.MONTHS = utilsService.getMonths();
   }
 

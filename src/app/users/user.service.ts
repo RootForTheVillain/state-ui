@@ -34,13 +34,12 @@ export class UserService {
         .catch(this.handleError);
     }
 
+    setAuthenticatedUser(user: User): void {
+      sessionStorage.setItem('auth_user', JSON.stringify(user));
+    }
+
     getAuthenticatedUser(): User {
-      let user = null;
-      if (localStorage.getItem('auth_user')) {
-        this.getUser(+localStorage.getItem('auth_user'))
-        .then(response => user);
-      }
-      return user;
+      return JSON.parse(sessionStorage.getItem('auth_user')) as User;
     }
 
     private handleError(error: any): Promise<any> {

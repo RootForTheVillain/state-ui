@@ -1,5 +1,10 @@
 import { Injectable }           from '@angular/core';
-import { Http, Response }       from '@angular/http';
+import {
+  Http,
+  Response,
+  Headers,
+  RequestOptions
+} from '@angular/http';
 
 import { Observable }           from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -18,9 +23,7 @@ export class UserService {
 
     private rootUrl: string = 'http://localhost:8080/rest/users/';
 
-    constructor(private http: Http) {
-      //this.isLoggedIn = !!localStorage.getItem('auth_token');
-    }
+    constructor(private http: Http) {}
 
     getUsers(): Observable<User[]> {
       return this.http.get(this.rootUrl)
@@ -32,6 +35,18 @@ export class UserService {
         .toPromise()
         .then(response => response.json() as User)
         .catch(this.handleError);
+    }
+
+    authenticate(email: string, password: string): Observable<User> {
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+
+      return this.http.post(this.rootUrl + 'login', { email: email, password: password }, options)
+        .map(response => { return response.json() });
+    }
+
+    logout(): void {
+      sessionStorage.removeItem('auth_user');
     }
 
     setAuthenticatedUser(user: User): void {

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
 
-import { User } from '../../users/user';
-import { UserService } from '../../users/user.service';
+import { Router }             from '@angular/router';
+
+import { User }               from '../../users/user';
+import { UserService }        from '../../users/user.service';
+
+import { UtilsService }       from '../../common/utils.service';
 
 @Component({
   moduleId: module.id,
@@ -15,18 +19,15 @@ export class TopMenuComponent implements OnInit {
   private timeOfDay: string;
 
   constructor(
-    private userService: UserService) {}
+    private router: Router,
+    private userService: UserService,
+    private utils: UtilsService) {}
 
   ngOnInit(): void {
     this.authUser = this.userService.getAuthenticatedUser();
+
     if (this.authUser === null) {
-
-      console.log('TopMenuComponent -> authUser = null, setting authUser....')
-
-      this.userService.getUser(1).then(response => {
-        this.authUser = response;
-        this.userService.setAuthenticatedUser(this.authUser);
-      });
+      //this.logout();
     }
 
     // Get time of day
@@ -38,5 +39,11 @@ export class TopMenuComponent implements OnInit {
     } else {
       this.timeOfDay = 'evening';
     }
+  }
+
+  logout(event): void {
+    event.stopPropagation();
+    this.userService.logout();
+    this.router.navigate([ 'login' ]);
   }
 }

@@ -5,6 +5,7 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
   birthDate: Date;
   licenseNumber: string;
   streetAddress: string;

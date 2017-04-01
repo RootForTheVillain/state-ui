@@ -12,6 +12,7 @@ import { UserService }          from './users/user.service';
 import { VehicleService }       from './vehicles/vehicle.service';
 //import { VehicleComponent }     from './tenants/michigan.gov/vehicles/vehicle.component';
 import { HomeComponent }        from './home/home.component';
+import { LoginComponent }        from './login/login.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { UtilsService }     from './common/utils.service';
@@ -20,6 +21,7 @@ import { UtilsService }     from './common/utils.service';
   declarations: [
     AppComponent,
     TopMenuComponent,
+    LoginComponent,
     HomeComponent,
     UserComponent
   ],

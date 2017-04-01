@@ -35,6 +35,11 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userService.getAuthenticatedUser() === null) {
+      //this.router.navigate(['users/login']);
+      console.log('AppComponent: authUser is null')
+    }
+
     /**
       * This is a disaster. There's no way this is how you're supposed to do this
       */

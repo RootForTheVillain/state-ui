@@ -6,10 +6,11 @@ import { HttpModule }           from '@angular/http';;
 import { AlertModule }          from 'ng2-bootstrap';
 
 import { AppComponent }         from './app.component';
-//import { UserComponent }        from './users/user.component';
+import { UserComponent }        from './users/user.component';
 import { TopMenuComponent }     from './common/top-menu/top-menu.component';
 import { UserService }          from './users/user.service';
-//import { VehicleComponent }     from './vehicles/vehicle.component';
+import { VehicleService }       from './vehicles/vehicle.service';
+//import { VehicleComponent }     from './tenants/michigan.gov/vehicles/vehicle.component';
 import { HomeComponent }        from './home/home.component';
 
 import { AppRoutingModule }     from './app-routing.module';
@@ -19,16 +20,16 @@ import { AppRoutingModule }     from './app-routing.module';
     AppComponent,
     TopMenuComponent,
     HomeComponent,
-    //UserComponent
+    UserComponent
   ],
   imports: [
-    AlertModule.forRoot(),
+    //AlertModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ UserService ],
+  providers: [ UserService, VehicleService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

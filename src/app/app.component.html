@@ -7,7 +7,7 @@
         <h2 id="currentYear">{{currentDate.getUTCFullYear()}}</h2>
         <ol class="items">
           <li *ngFor="let month of MONTHS; let i = index"
-              [class.selected]="i === currentDate.getMonth()"
+              [class.selected]="i === selectedMonth"
               (click)="onMonthChange(authUser.id, currentDate.getUTCFullYear(), month)">{{month}}</li>
         </ol>
       </div>

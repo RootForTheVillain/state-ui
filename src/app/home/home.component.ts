@@ -4,9 +4,11 @@ import { Location }                 from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
+import { AppComponent }             from '../app.component';
 import { User }                     from '../users/user';
 import { UserService }              from '../users/user.service';
 import { Vehicle }                  from '../vehicles/vehicle';
+import { VehicleService }           from '../vehicles/vehicle.service';
 
 @Component({
   selector: 'app-home',
@@ -21,31 +23,27 @@ export class HomeComponent implements OnInit {
   private vehiclesToRenew: Vehicle[] = [];
 
   constructor(
+    private app: AppComponent,
     private userService: UserService,
+    private vehicleService: VehicleService,
     private route: ActivatedRoute,
     private router: Router,
     private location: Location) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      console.log('HomeComponent', params['id']);
+    });
+
     /**
       * This is a disaster. There's no way this is how you're supposed to do this
       */
     this.router.events.subscribe(val => {
       if (val instanceof RoutesRecognized) {
-        this.userService.getUser(+val.state.root.firstChild.params['id'])
-        .then(response => {
-          this.authUser = response;
-
-          // Only show vehicles expiring within a month of the expiration date
-          let currentMonth = new Date().getMonth();
-          for (let vehicle of this.authUser.vehicles) {
-            let monthOfExpiration = new Date(vehicle.plateExpiration).getMonth();
-            if (monthOfExpiration === currentMonth
-              || monthOfExpiration - 1 === currentMonth) {
-                this.vehiclesToRenew.push(vehicle);
-            }
-          }
-        });
+        this.vehicleService.getRenewals(+val.state.root.firstChild.params['id'],
+          +val.state.root.firstChild.params['year'],
+          +this.app.convertMonthToNumber(val.state.root.firstChild.params['month']))
+        .subscribe(response => this.vehiclesToRenew = response);
       }
     });
   }

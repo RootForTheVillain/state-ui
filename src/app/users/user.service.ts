@@ -19,7 +19,7 @@ export class UserService {
     private rootUrl: string = 'http://localhost:8080/rest/users/';
 
     constructor(private http: Http) {
-      this.isLoggedIn = !!localStorage.getItem('auth_token');
+      //this.isLoggedIn = !!localStorage.getItem('auth_token');
     }
 
     getUsers(): Observable<User[]> {
@@ -41,11 +41,6 @@ export class UserService {
         .then(response => user);
       }
       return user;
-    }
-
-    getVehiclesForUser(id: number): Observable<Vehicle[]> {
-      return this.http.get(this.rootUrl + id + '/vehicles')
-        .map(response => this.vehicles = response.json());
     }
 
     private handleError(error: any): Promise<any> {

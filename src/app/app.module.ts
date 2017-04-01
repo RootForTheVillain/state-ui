@@ -14,6 +14,7 @@ import { VehicleService }       from './vehicles/vehicle.service';
 import { HomeComponent }        from './home/home.component';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { UtilsService }     from './common/utils.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AppRoutingModule }     from './app-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ UserService, VehicleService ],
+  providers: [ UserService, VehicleService, UtilsService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

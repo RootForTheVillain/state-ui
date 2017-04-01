@@ -1,5 +1,14 @@
 <h2>Users and 404 error page</h2>
 
+<ul class="heroes">
+  <li *ngFor="let user of users"
+      [class.selected]="user === selectedHero"
+      (click)="onSelect(user)">
+    <span class="badge">{{user.id}}</span>
+    <a [routerLink]="['/users', user.id]" class="col-1-4">{{user.firstName}} {{user.lastName}}</a>
+  </li>
+</ul>
+
 <!--
 <h2>Users {{user.firstName}}</h2>
 <div class="grid grid-pad">

@@ -12,7 +12,6 @@ import { UserService } from './user.service';
 
 export class UserComponent implements OnInit {
 
-  user = {};
   users: User[] = [];
 
   constructor(private userService: UserService) { }

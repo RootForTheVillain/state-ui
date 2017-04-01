@@ -5,9 +5,11 @@ import { HomeComponent }   from './home/home.component';
 import { UserComponent }        from './users/user.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: 'users/1/2017/november', pathMatch: 'full' },
-  { path: 'users/:id/:year/:month',  component: HomeComponent },
-  { path: '**', component: UserComponent }
+
+  { path: '', redirectTo: 'users/1', pathMatch: 'full' },
+  { path: 'users/:id', component: HomeComponent },
+{ path: 'users', component: UserComponent }
+  //{ path: '**', component: UserComponent }
 ];
 
 @NgModule({

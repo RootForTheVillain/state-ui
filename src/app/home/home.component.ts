@@ -1,17 +1,17 @@
 import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, Params, Route, Router, RoutesRecognized }   from '@angular/router';
+import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
-import { AppComponent }             from '../app.component';
+import { UtilsService }             from '../common/utils.service';
 import { User }                     from '../users/user';
 import { UserService }              from '../users/user.service';
 import { Vehicle }                  from '../vehicles/vehicle';
 import { VehicleService }           from '../vehicles/vehicle.service';
 
 @Component({
-  selector: 'app-home',
+  //selector: 'app-home',
   templateUrl: './home.component.html',
   moduleId: module.id
 })
@@ -23,28 +23,52 @@ export class HomeComponent implements OnInit {
   private vehiclesToRenew: Vehicle[] = [];
 
   constructor(
-    private app: AppComponent,
+    private utilsService: UtilsService,
     private userService: UserService,
     private vehicleService: VehicleService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location) {}
+    private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      console.log('HomeComponent', params['id']);
+
+    console.log('HomeComponent.ngOnInit()')
+
+    /*this.vehicleService.getRenewals(1,
+      new Date().getUTCFullYear(),
+      new Date().getMonth())
+    .subscribe(response => this.vehiclesToRenew = response);*/
+
+    this.route.params
+      .switchMap((params: Params) => {
+        let year = (params['year']) ? params['year']: new Date().getUTCFullYear();
+        let month = (params['month']) ? this.utilsService.convertMonthToNumber(params['month']): new Date().getMonth();
+        return this.vehicleService.getRenewals(+params['id'], +year, +month);
+      })
+      .subscribe(response => this.vehiclesToRenew = response);
+
+
+
+
+
+
+    /*this.route.params.subscribe(params => {
+        console.log('HomeComponent.0',
+          params['id']);
     });
 
-    /**
-      * This is a disaster. There's no way this is how you're supposed to do this
-      */
     this.router.events.subscribe(val => {
       if (val instanceof RoutesRecognized) {
+
+        console.log('HomeComponent.1',
+          val.state.root.firstChild.params['id'],
+          val.state.root.firstChild.params['year'],
+          //this.app.convertMonthToNumber(val.state.root.firstChild.params['month'])
+          val.state.root.firstChild.params['month'])
+
         this.vehicleService.getRenewals(+val.state.root.firstChild.params['id'],
           +val.state.root.firstChild.params['year'],
-          +this.app.convertMonthToNumber(val.state.root.firstChild.params['month']))
+          +this.utilsService.convertMonthToNumber(val.state.root.firstChild.params['month']))
         .subscribe(response => this.vehiclesToRenew = response);
       }
-    });
+    });*/
   }
 }

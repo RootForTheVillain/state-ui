@@ -23,27 +23,19 @@ export class TopMenuComponent implements OnInit {
     private router: Router,
     private location: Location) {}
 
-  /*ngOnInit(): void {
-      this.route.params
-      .switchMap((params: Params) => this.userService.getUser(+params['id']))
-      .subscribe(response => {
-        this.authUser = response;
-      });
-  }*/
-
   ngOnInit(): void {
-
-    this.route.params.subscribe(params => {
-      console.log('TopMenuComponent', params['id']);
-    });
-
     // Get route params from parent Component
     this.router.events.subscribe(val => {
       if (val instanceof RoutesRecognized) {
-        this.userService.getUser(+val.state.root.firstChild.params['id'])
-        .then(response => {
-          this.authUser = response;
-        });
+
+console.log('top-menu-component.ts: ', val.state.root.firstChild.params['id'])
+
+        if (isNaN(+val.state.root.firstChild.params['id'])) {
+          console.log('top-menu-component.ts: id isNaN')
+        }
+
+        /*this.userService.getUser(+val.state.root.firstChild.params['id'])
+          .then(response => this.authUser = response);*/
       }
     });
 

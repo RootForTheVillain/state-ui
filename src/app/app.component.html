@@ -1,4 +1,4 @@
-<top-menu></top-menu>
+<!--<top-menu></top-menu>-->
 <div id="main" class="container">
   <!--<alert type="success">hello</alert>-->
   <div class="row no-gutters">
@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="col-lg-6">
-      <app-home></app-home>
       <router-outlet></router-outlet>
     </div>
     <div class="col-lg-4">
       <h2>Other stuff</h2>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
     </div>
   </div>
 </div>

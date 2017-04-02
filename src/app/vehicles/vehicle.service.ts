@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 import { User }                 from '../users/user';
 import { Vehicle }              from './vehicle';
 
-import { UtilsService }              from '../common/utils.service';
+import { UtilsService }         from '../common/utils.service';
 
 @Injectable()
 export class VehicleService {
@@ -23,10 +23,12 @@ export class VehicleService {
       private http: Http,
       private utilsService: UtilsService) {}
 
-    getRenewals(id: number, year: number, month: number): Observable<Vehicle[]> {
+    getRenewals(id: number, year: number, month: number, end?: number): Observable<Vehicle[]> {
       console.log('getRenewals', id, year, month)
 
-      return this.http.get(this.rootUrl + id + '/vehicles/' + year + '/' + month)
+      let qs = (typeof end !== 'undefined') ? '?monthToEnd=' + end: '';
+
+      return this.http.get(this.rootUrl + id + '/vehicles/' + year + '/' + month + qs)
         .map(response => this.vehicles = response.json());
     }
 

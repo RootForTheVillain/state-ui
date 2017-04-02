@@ -40,19 +40,6 @@ export class AppComponent implements OnInit {
       this.router.navigate(['users/login']);
       console.log('AppComponent: authUser is null')
     }
-
-    /**
-      * This is a disaster. There's no way this is how you're supposed to do this
-      */
-    /*this.router.events.subscribe(val => {
-      if (val instanceof RoutesRecognized) {
-        this.userService.getUser(+val.state.root.firstChild.params['id'])
-        .then(response => {
-          this.authUser = response;
-          this.selectedMonth = this.utilsService.convertMonthToNumber(val.state.root.firstChild.params['month']);
-        });
-      }
-    });*/
   }
 
   onMonthChange(id: number, year: number, month: string): void {

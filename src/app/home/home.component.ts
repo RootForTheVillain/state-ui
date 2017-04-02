@@ -31,13 +31,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.route.params
       .switchMap((params: Params) => {
-        let year = (params['year']) ? params['year']: new Date().getUTCFullYear();
-        let month = (params['month']) ? this.utilsService.convertMonthToNumber(params['month']): new Date().getMonth();
-
-        console.log('home.component.ts:', year, month, params['month'])
-        //console.log('monthConvertedToNubmer', year, this.utilsService.convertMonthToNumber(params['month']))
-
-        return this.vehicleService.getRenewals(+params['id'], +year, +month);
+        let dt = new Date();
+        return this.vehicleService.getRenewals(
+          +params['id'],
+          +dt.getUTCFullYear(),
+          +dt.getMonth() - 1,
+          +dt.getMonth() + 1);
       })
       .subscribe(response => this.vehiclesToRenew = response);
   }

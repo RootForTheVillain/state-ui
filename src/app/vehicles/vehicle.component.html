@@ -1,20 +1,8 @@
-<!--<h2>
-  Upcoming Renewals
-  <a href=""> Add a reminder</a>
-</h2>
-<div class="widget">
-  <h3>Renew My Driver's License</h3>
-  <div class="row">
-    <div class="col">
-
-    </div>
-  </div>
-</div>-->
-
-<ng-container *ngIf="authUser.vehicles?.length > 0">
+<a [routerLink]="['/']"></a>
+<ng-container *ngIf="vehiclesToRenew?.length > 0">
   <div class="row row-equal-height widget-heading">
     <div class="col-md-9">
-      <h2>Upcoming Renewals</h2>
+      <h2>{{currentDate.getMonth()}} Renewals</h2>
     </div>
     <div class="col-md-3 widget-heading-action">
       <a href=""> Add a reminder</a>

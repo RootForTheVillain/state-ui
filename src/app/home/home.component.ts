@@ -33,6 +33,10 @@ export class HomeComponent implements OnInit {
       .switchMap((params: Params) => {
         let year = (params['year']) ? params['year']: new Date().getUTCFullYear();
         let month = (params['month']) ? this.utilsService.convertMonthToNumber(params['month']): new Date().getMonth();
+
+        console.log('home.component.ts:', year, month, params['month'])
+        //console.log('monthConvertedToNubmer', year, this.utilsService.convertMonthToNumber(params['month']))
+
         return this.vehicleService.getRenewals(+params['id'], +year, +month);
       })
       .subscribe(response => this.vehiclesToRenew = response);

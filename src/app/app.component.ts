@@ -20,7 +20,7 @@ import { UtilsService }                 from './common/utils.service';
 export class AppComponent implements OnInit {
 
   //static readonly TENANT = 'michigan.gov';
-  private authUser: User = new User();
+  private authUser: User;
   private currentDate: Date = new Date();
   private timeOfDay: string;
   private selectedMonth: number = this.currentDate.getMonth();
@@ -35,8 +35,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userService.getAuthenticatedUser() === null) {
-      //this.router.navigate(['users/login']);
+    this.authUser = this.userService.getAuthenticatedUser();
+    if (this.authUser === null) {
+      this.router.navigate(['users/login']);
       console.log('AppComponent: authUser is null')
     }
 
@@ -56,7 +57,8 @@ export class AppComponent implements OnInit {
 
   onMonthChange(id: number, year: number, month: string): void {
     console.log('onMonthChange:', id, year, month)
-    //this.router.navigate(['users/' + id + '/' + year + '/' + +this.utilsService.convertMonthToNumber(month)]);
+    this.selectedMonth = +this.utilsService.convertMonthToNumber(month);
+    this.router.navigate(['users/' + this.authUser.id + '/vehicles/' + year + '/' + month]);
   }
 }
 

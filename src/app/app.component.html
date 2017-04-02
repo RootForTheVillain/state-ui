@@ -8,7 +8,7 @@
         <ol class="items">
           <li *ngFor="let month of MONTHS; let i = index"
               [class.selected]="i === selectedMonth"
-              (click)="onMonthChange(authUser.id, currentDate.getUTCFullYear(), month)">{{month}}</li>
+              (click)="onMonthChange(authUser.id, currentDate.getUTCFullYear(), i)">{{month}}</li>
         </ol>
       </div>
     </div>

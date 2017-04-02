@@ -15,6 +15,7 @@ import { UserService }              from '../users/user.service';
 export class LoginComponent implements OnInit {
 
   private user: User = new User();
+  submitted = false;
 
   constructor(
     private router: Router,
@@ -24,6 +25,13 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
+
+  onSubmit(): void {
+    this.submitted = true;
+    this.login(null);
+  }
+
+  active = true;
 
   login(event): void {
     this.userService.authenticate(this.user.email, this.user.password)

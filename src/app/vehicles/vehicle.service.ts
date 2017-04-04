@@ -1,5 +1,11 @@
 import { Injectable }           from '@angular/core';
-import { Http, Response }       from '@angular/http';
+import {
+  Http,
+  Response,
+  Headers,
+  RequestOptions
+}
+from '@angular/http';
 
 import { Observable }           from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -21,14 +27,13 @@ export class VehicleService {
 
     constructor(
       private http: Http,
-      private utilsService: UtilsService) {}
+      private utils: UtilsService) {}
 
     getRenewals(id: number, year: number, month: number, end?: number): Observable<Vehicle[]> {
-      console.log('getRenewals', id, year, month)
-
+      let options = this.utils.getHeaders();
       let qs = (typeof end !== 'undefined') ? '?monthToEnd=' + end: '';
 
-      return this.http.get(this.rootUrl + id + '/vehicles/' + year + '/' + month + qs)
+      return this.http.get(this.rootUrl + id + '/vehicles/' + year + '/' + month + qs, options)
         .map(response => this.vehicles = response.json());
     }
 

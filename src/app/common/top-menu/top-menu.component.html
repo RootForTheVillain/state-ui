@@ -15,9 +15,9 @@
         <li class="search-container">
           <input type="text" placeholder="What do you want to do?" class="searchbar"><button type="button" class="search-button"><img src="../assets/images/magnifying-glass.png" width="20" height="20" alt="Search"></button>
         </li>
-        <li><a href="#about" class="capitalize">Good {{timeOfDay}}, {{authUser.firstName}}!</a></li>
+        <li *ngIf="authUser"><a href="#about" class="capitalize">Good {{timeOfDay}}, {{authUser.firstName}}!</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#logout" (click)="logout()">Logout</a></li>
+        <li *ngIf="authUser"><a href="#logout" (click)="logout($event)">Logout</a></li>
         <li><a href="#hamburger">☰</a></li>
         <!--<li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
 import { User }                 from './user';
 import { Vehicle }              from '../vehicles/vehicle';
+import { UtilsService }         from '../common/utils.service';
 
 @Injectable()
 export class UserService {
@@ -23,25 +24,26 @@ export class UserService {
 
     private rootUrl: string = 'http://localhost:8080/rest/users/';
 
-    constructor(private http: Http) {}
+    constructor(
+      private http: Http,
+      private utils: UtilsService) {}
 
     getUsers(): Observable<User[]> {
-      return this.http.get(this.rootUrl)
+      let options = this.utils.getHeaders();
+      return this.http.get(this.rootUrl, options)
         .map(response => response.json());
     }
 
     getUser(id: number): Promise<User> {
-      return this.http.get(this.rootUrl + id)
+      return this.http.get(this.rootUrl + id, this.utils.getHeaders())
         .toPromise()
         .then(response => response.json() as User)
         .catch(this.handleError);
     }
 
     authenticate(email: string, password: string): Observable<User> {
-      let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
-
-      return this.http.post(this.rootUrl + 'login', { email: email, password: password }, options)
+      let options = this.utils.getHeaders();
+      return this.http.post('http://localhost:8080/rest/login', { email: email, password: password }, options)
         .map(response => { return response.json() });
     }
 
@@ -62,17 +64,3 @@ export class UserService {
       return Promise.reject(error.message || error);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

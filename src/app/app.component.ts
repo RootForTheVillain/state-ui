@@ -37,13 +37,12 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authUser = this.userService.getAuthenticatedUser();
     if (this.authUser === null) {
-      this.router.navigate(['users/login']);
+      this.router.navigate(['login']);
       console.log('AppComponent: authUser is null')
     }
   }
 
   onMonthChange(id: number, year: number, month: string): void {
-    console.log('onMonthChange:', id, year, month)
     this.selectedMonth = +this.utilsService.convertMonthToNumber(month);
     this.router.navigate(['users/' + this.authUser.id + '/vehicles/' + year + '/' + month]);
   }

@@ -41,8 +41,7 @@ export class TopMenuComponent implements OnInit {
     }
   }
 
-  logout(event): void {
-    event.stopPropagation();
+  logout(): void {
     this.userService.logout();
     this.router.navigate([ 'login' ]);
   }

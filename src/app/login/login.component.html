@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <h2>Login</h2>
-  <form name="form" #loginForm="ngForm" *ngIf="active" (ngSubmit)="onSubmit()">
+  <form name="form" #loginForm="ngForm" *ngIf="active" (ngSubmit)="onSubmit($event)">
     <div class="form-group">
       <label for="email">Email address</label>
       <input type="text" class="form-control"

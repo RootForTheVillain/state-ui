@@ -1,5 +1,10 @@
 import { Injectable }           from '@angular/core';
 
+import {
+  Headers,
+  RequestOptions
+} from '@angular/http';
+
 @Injectable()
 export class UtilsService {
 
@@ -30,15 +35,22 @@ export class UtilsService {
     }
   }
 
-  /*convertNumberToMonth(num: number): string {
-    for (let i in this.MONTHS) {
-      if (i === num) {
-        return this.MONTHS[i];
-      }
-    }
-  }*/
-
   getMonths(): string[] {
     return this.MONTHS;
+  }
+
+  getHeaders(headers?: Object[]): RequestOptions {
+    let heads = new Headers({ Accept: 'application/json' });
+    heads.append('Content-Type', 'application/vnd.michigan.v1+json');
+
+    if (typeof headers != 'undefined') {
+      for (var obj of headers) {
+        for (let key in obj) {
+          heads.append(key, obj[key]);
+        }
+      }
+    }
+
+    return new RequestOptions({ headers: heads });
   }
 }

@@ -1,0 +1,103 @@
+body {
+  background: url('../../assets/images/background-cropped.jpg') no-repeat fixed #EDECEC !important;
+  /*background-color: #EDECEC !important;*/
+}
+
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #B3B3B3;
+}
+
+.navbar-brand {
+  color: #334B7E;
+  background: url('../../assets/images/state-logo.png') no-repeat;
+  display: block;
+  height: 50px;
+  padding-left: 50px;
+}
+
+#months-of-the-year {
+  position: fixed;
+  top: 200px;
+}
+
+/* items class */
+.items {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+}
+.items li {
+  cursor: pointer;
+  border: 1px solid #fff;
+  margin: .3em 0;
+  padding: .3em;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #F1F1F1;
+  font-size: 18px;
+  color: #4D4D4C;
+}
+.items li:hover,
+ .items li.selected {
+  color: #fff;
+  background-color: #36A499;
+  left: .1em;
+}
+.widget {
+  padding: .75em;
+  margin: 1em 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.15);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.15);
+  color: #4D4D4C;
+}
+
+.widget h3 {
+  color: #36A499;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.widget span.column-label {
+  color: #989898;
+  padding: 0;
+  font-size: 100%;
+  font-weight: normal;
+}
+
+.widget-heading h2 {
+  font-size: 22px;
+  padding: inherit 0;
+  margin: inherit 0 0 0;
+}
+
+.widget-heading-action {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.widget-heading-action a {
+  color: #2F7AFF;
+  text-decoration: none;
+}
+
+.widget-heading-action a:hover {
+  text-decoration: underline;
+}
+
+.row-equal-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.row-equal-height > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input }        from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Router }                   from '@angular/router';
 
@@ -10,14 +10,12 @@ import { TopMenuComponent }         from '../common/top-menu/top-menu.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.css' ],
   moduleId: module.id
 })
 
 export class LoginComponent implements OnInit {
 
   private user: User = new User();
-  //submitted = false;
 
   constructor(
     private router: Router,
@@ -34,7 +32,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(event): void {
-    //this.submitted = true;
     this.login(event);
   }
 

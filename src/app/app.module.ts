@@ -12,10 +12,13 @@ import { UserService }          from './users/user.service';
 import { VehicleService }       from './vehicles/vehicle.service';
 import { VehicleComponent }     from './vehicles/vehicle.component';
 import { HomeComponent }        from './home/home.component';
-import { LoginComponent }        from './login/login.component';
+import { LoginComponent }       from './login/login.component';
+import { PublicComponent }      from './layouts/public.component';
+import { SecureComponent }      from './layouts/secure.component';
 
 import { AppRoutingModule }     from './app-routing.module';
-import { UtilsService }     from './common/utils.service';
+import { CanActivateGuard }     from './common/can-activate.guard';
+import { UtilsService }         from './common/utils.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { UtilsService }     from './common/utils.service';
     LoginComponent,
     HomeComponent,
     UserComponent,
-    VehicleComponent
+    VehicleComponent,
+    PublicComponent,
+    SecureComponent
   ],
   imports: [
     //AlertModule.forRoot(),
@@ -33,7 +38,7 @@ import { UtilsService }     from './common/utils.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ UserService, VehicleService, UtilsService ],
+  providers: [ UserService, VehicleService, UtilsService, CanActivateGuard ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

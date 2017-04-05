@@ -6,14 +6,16 @@ import { VehicleComponent }     from './vehicles/vehicle.component';
 import { HomeComponent }        from './home/home.component';
 import { LoginComponent }       from './login/login.component';
 
-const routes: Routes = [
+import { PublicComponent }      from './layouts/public.component';
+import { SecureComponent }      from './layouts/secure.component';
+import { PUBLIC_ROUTES }        from './public/public.routes';
+import { SECURE_ROUTES }        from './secure/secure.routes';
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'users/:id', component: HomeComponent },
-  { path: 'users/:id/vehicles/:year/:month', component: VehicleComponent },
-  { path: 'users', component: UserComponent }
-  //{ path: '**', component: UserComponent }
+import { CanActivateGuard }     from './common/can-activate.guard';
+
+const routes: Routes = [
+  { path: '', component: PublicComponent, data: { title: 'Public Views' }, children: PUBLIC_ROUTES },
+  { path: '', component: SecureComponent, canActivate: [CanActivateGuard], data: { title: 'Secure Views' }, children: SECURE_ROUTES }
 ];
 
 @NgModule({

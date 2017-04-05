@@ -1,10 +1,13 @@
 import { Injectable }           from '@angular/core';
+
 import {
   Http,
   Response,
   Headers,
   RequestOptions
 } from '@angular/http';
+
+import { Router }               from '@angular/router';
 
 import { Observable }           from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -26,6 +29,7 @@ export class UserService {
 
     constructor(
       private http: Http,
+      private router: Router,
       private utils: UtilsService) {}
 
     getUsers(): Observable<User[]> {
@@ -57,6 +61,12 @@ export class UserService {
 
     getAuthenticatedUser(): User {
       return JSON.parse(sessionStorage.getItem('auth_user')) as User;
+    }
+
+    requireAuthentication(): void {
+      if (this.getAuthenticatedUser() === null) {
+        this.router.navigate(['login']);
+      }
     }
 
     private handleError(error: any): Promise<any> {

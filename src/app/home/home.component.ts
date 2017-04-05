@@ -23,12 +23,14 @@ export class HomeComponent implements OnInit {
   private vehiclesToRenew: Vehicle[] = [];
 
   constructor(
-    private utilsService: UtilsService,
+    //private utilsService: UtilsService,
     private userService: UserService,
     private vehicleService: VehicleService,
     private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.userService.requireAuthentication();
+
     this.route.params
       .switchMap((params: Params) => {
         let dt = new Date();

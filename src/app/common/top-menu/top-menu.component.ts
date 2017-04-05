@@ -26,10 +26,6 @@ export class TopMenuComponent implements OnInit {
   ngOnInit(): void {
     this.authUser = this.userService.getAuthenticatedUser();
 
-    if (this.authUser === null) {
-      //this.logout();
-    }
-
     // Get time of day
     let currentHours = this.currentDate.getHours();
     if (currentHours < 12) {

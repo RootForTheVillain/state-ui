@@ -1,4 +1,27 @@
 body {
-  background: url('../../assets/images/login-background.jpg') no-repeat fixed;
+  background: url('../../assets/images/background2.jpg') no-repeat fixed;
   background-size: cover;
+}
+
+.navbar-fixed-top .container {
+  width: 50%;
+}
+
+nav a {
+  color: #fff;
+}
+
+nav a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+#container-cell {
+  margin: 70px 0 0 50px;
+}
+
+.btn-primary {
+  width: 50%;
+  color: #fff;
+  background-color: #0F2C67 !important;
 }

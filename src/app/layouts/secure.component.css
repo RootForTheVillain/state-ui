@@ -1,6 +1,11 @@
 body {
-  background: url('../../assets/images/background-cropped.jpg') no-repeat fixed #EDECEC !important;
-  /*background-color: #EDECEC !important;*/
+  background-color: #EDECEC !important;
+}
+
+#background-image {
+  background: url('../../assets/images/background2.jpg') no-repeat -100px;
+  background-size: cover;
+  padding: 75px;
 }
 
 .navbar {
@@ -18,7 +23,11 @@ body {
 
 #months-of-the-year {
   position: fixed;
-  top: 200px;
+}
+
+#currentYear {
+  color: #36A499;
+  text-align: center;
 }
 
 /* items class */
@@ -44,6 +53,7 @@ body {
   background-color: #36A499;
   left: .1em;
 }
+
 .widget {
   padding: .75em;
   margin: 1em 0;

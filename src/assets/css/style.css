@@ -15,11 +15,6 @@ body,html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-#main {
-  margin-top: 220px;
-}
-
 .text-red {
   color: #cd151e;
 }

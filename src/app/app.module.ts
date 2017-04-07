@@ -3,6 +3,8 @@ import { NgModule }             from '@angular/core';
 import { FormsModule }          from '@angular/forms';
 import { HttpModule }           from '@angular/http';;
 
+import { NgbModule }            from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule }       from 'ngx-bootstrap/carousel';
 import { AlertModule }          from 'ng2-bootstrap';
 
 import { AppComponent }         from './app.component';
@@ -32,6 +34,8 @@ import { UtilsService }         from './common/utils.service';
     SecureComponent
   ],
   imports: [
+    CarouselModule.forRoot(),
+    NgbModule.forRoot(),
     //AlertModule.forRoot(),
     BrowserModule,
     FormsModule,

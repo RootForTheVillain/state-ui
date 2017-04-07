@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation }         from '@angular/core';
 import { ActivatedRoute, Params }                       from '@angular/router';
 import { Location }                                     from '@angular/common';
 
+//import { Carousel, CarouselSlide, CarouselCaption }     from 'angular2-bootstrap';
+
 import 'rxjs/add/operator/switchMap';
 
 import { UtilsService }                                 from '../common/utils.service';

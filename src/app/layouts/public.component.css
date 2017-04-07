@@ -18,6 +18,11 @@ nav a:hover {
 
 #container-cell {
   margin: 70px 0 0 50px;
+  padding: 0;
+}
+
+.row {
+  margin: 0;
 }
 
 .btn-primary {

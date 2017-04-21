@@ -2,7 +2,6 @@
 * This has to be left in, rather than using <top-menu>. If you use the component, it caches the stylesheet, so when
 * HomeComponent loads after login, the wrong stylesheet gets applied (since the HTML didn't change at all)
 -->
-
 <nav class="navbar navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -25,47 +24,31 @@
   </div>
 </nav>
 
-<div>
-  <!--<alert type="success">hello</alert>-->
-  <div class="row no-gutters">
-    <div class="col-lg-12">
-      <router-outlet></router-outlet>
-    </div>
+<!--<alert type="success">hello</alert>-->
+<div class="row no-gutters">
+  <div class="col-lg-12">
+    <router-outlet></router-outlet>
   </div>
-  <div class="row no-gutters">
-    <div class="col-lg-12">
-      <carousel>
-        <slide>
-          <img src="assets/images/nature/1.jpg" height="200" alt="First slide">
+</div>
+<div class="row no-gutters">
+  <div class="col-md-6">
+    <div>
+      <ngb-carousel>
+        <template ngbSlide>
+          <img src="http://lorempixel.com/900/500?r=1" alt="Random first slide">
           <div class="carousel-caption">
-            <h3>Sports</h3>
+            <h3>First slide label</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
-        </slide>
-        <slide>
-          <img src="assets/images/nature/2.jpg" height="200" alt="Second slide">
+        </template>
+        <template ngbSlide>
+          <img src="http://lorempixel.com/900/500?r=2" alt="Random second slide">
           <div class="carousel-caption">
-            <h3>Michigan Parks</h3>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
-        </slide>
-        <slide>
-          <img src="assets/images/nature/3.jpg" height="200" alt="Third slide">
-          <div class="carousel-caption">
-            <h3>Michigan.gov</h3>
-          </div>
-        </slide>
-        <slide>
-          <img src="assets/images/nature/3.jpg" height="200" alt="Third slide">
-          <div class="carousel-caption">
-            <h3>Pure Michigan</h3>
-          </div>
-        </slide>
-        <slide>
-          <img src="assets/images/nature/3.jpg" alt="Third slide">
-          <div class="carousel-caption">
-            <h3>Auto Tech of Michigan</h3>
-          </div>
-        </slide>
-      </carousel>
+        </template>
+      </ngb-carousel>
     </div>
   </div>
 </div>

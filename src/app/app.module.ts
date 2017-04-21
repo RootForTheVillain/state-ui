@@ -4,8 +4,6 @@ import { FormsModule }          from '@angular/forms';
 import { HttpModule }           from '@angular/http';;
 
 import { NgbModule }            from '@ng-bootstrap/ng-bootstrap';
-import { CarouselModule }       from 'ngx-bootstrap/carousel';
-import { AlertModule }          from 'ng2-bootstrap';
 
 import { AppComponent }         from './app.component';
 import { UserComponent }        from './users/user.component';
@@ -34,7 +32,6 @@ import { UtilsService }         from './common/utils.service';
     SecureComponent
   ],
   imports: [
-    CarouselModule.forRoot(),
     NgbModule.forRoot(),
     //AlertModule.forRoot(),
     BrowserModule,
